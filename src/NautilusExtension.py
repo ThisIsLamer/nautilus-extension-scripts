@@ -3,7 +3,7 @@ from subprocess import call
 
 
 class NautilusExtension():
-    def __init__(self, Nautilus, Gio, COMMAND, APPLICATION_NAME, LANG):
+    def __init__(self, Nautilus, Gio, COMMAND, APPLICATION_NAME, LANG="en"):
         self.Nautilus = Nautilus
         self.Gio = Gio
 
