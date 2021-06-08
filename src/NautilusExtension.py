@@ -3,7 +3,7 @@ from subprocess import call
 
 
 class NautilusExtension():
-    def __init__(self, Nautilus, Gio, COMMAND, APPLICATION_NAME, LANG="en"):
+    def __init__(self, Nautilus, Gio, COMMAND, APPLICATION_NAME, LANG):
         self.Nautilus = Nautilus
         self.Gio = Gio
 
@@ -40,11 +40,11 @@ class NautilusExtension():
     def _menu_background_activate_cb(self, menu, file):
         self._open(file)
 
-    def get_file_items(self, window, files):
+    def get_file_items(self, window, files, text_file=False):
         if len(files) != 1:
             return
         
-        items, file = [], files[0]
+        item, file = None, files[0]
 
         if file.is_directory():
             filename = self._checkdecode(file.get_name())
@@ -54,9 +54,16 @@ class NautilusExtension():
                 tip=_(self.TIP_FILE + " {}").format(filename)
             )
             item.connect('activate', self._menu_activate_cb, file)
-            items.append(item)
+        elif text_file:
+            filename = self._checkdecode(file.get_name())
+            item = self.Nautilus.MenuItem(
+                name="NautilusPython::open_file_item",
+                label=_(self.LABEL_FILE),
+                tip=_(self.TIP_FILE + " {}").format(filename)
+            )
+            item.connect('activate', self._menu_activate_cb, file)
 
-        return items
+        return [item]
     
     def get_background_items(self, window, file):
         items, item = [], self.Nautilus.MenuItem(
