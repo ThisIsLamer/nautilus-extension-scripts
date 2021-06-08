@@ -18,8 +18,8 @@ from gi.repository import Nautilus, GObject, Gio
 class YOUNAMEExtension(GObject.GObject, Nautilus.MenuProvider):
     def __init__(self):
         # We initialize the shell and pass the required parameters: 
-        # # Nautilus, Gio, "The command of which you will call the 
-        # # application", "Program name", "Localization, ru, en supported,
+        # Nautilus, Gio, "The command of which you will call the 
+        # application", "Program name", "Localization, ru, en supported,
         # for en, leave this field empty" 
         self.nautilus = NautilusExtension(Nautilus, Gio, "code", "VSCode", "ru")
 
@@ -31,3 +31,9 @@ class YOUNAMEExtension(GObject.GObject, Nautilus.MenuProvider):
     def get_background_items(self, window, file):
         return self.nautilus.get_background_items(window, file)
 ```
+
+<div align="center">
+    <h1>Installing</h1>
+</div>
+
+### Install the package `nautilus-python` then move all files from the current directory to the next one: `~/.local/share/nautilus-python/extensions/` and restart nautilus.
