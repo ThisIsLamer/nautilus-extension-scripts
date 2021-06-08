@@ -4,9 +4,9 @@
     <img src="https://img.shields.io/badge/-Gnome-2C2F33?style=flat&logo=gnome">
 </div>
 
-### This is a small wrapper over nautilus-python designed to easily add extensions to the context menu
+#### This is a small wrapper over nautilus-python designed to easily add extensions to the context menu
 
-### To quickly add items to the context menu, simply create a new file and add the following content there using the visual-studio-code example.
+#### To quickly add items to the context menu, simply create a new file and add the following content there using the visual-studio-code example.
 
 
 ```py
@@ -32,15 +32,17 @@ class YOUNAMEExtension(GObject.GObject, Nautilus.MenuProvider):
         return self.nautilus.get_background_items(window, file)
 ```
 
-### to add to the context menu when clicking on the right mouse button, pass the last parameter to the function `get_file_items` value `True`
+#### to add to the context menu when clicking on the right mouse button, pass the last parameter to the function `get_file_items` value `True`
 ```py
 def get_file_items(self, window, files):
         return self.nautilus.get_file_items(window, files, True)
 ```
 
+## Dependencies
++ nautilus-python
 
-<div align="center">
-    <h1>Installing</h1>
-</div>
-
-### Install the package `nautilus-python` then move all files from the current directory to the next one: `~/.local/share/nautilus-python/extensions/` and restart nautilus.
+## Installing
+Modify your extensions and add their names to the Makefile. Then enter the following command to install the extensions. 
+```
+make clean install
+```
