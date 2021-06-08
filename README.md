@@ -32,6 +32,13 @@ class YOUNAMEExtension(GObject.GObject, Nautilus.MenuProvider):
         return self.nautilus.get_background_items(window, file)
 ```
 
+### to add to the context menu when clicking on the right mouse button, pass the last parameter to the function `get_file_items` value `True`
+```py
+def get_file_items(self, window, files):
+        return self.nautilus.get_file_items(window, files, True)
+```
+
+
 <div align="center">
     <h1>Installing</h1>
 </div>
